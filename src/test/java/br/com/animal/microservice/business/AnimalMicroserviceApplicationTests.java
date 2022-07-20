@@ -1,4 +1,4 @@
-package br.com.animal.microservice.animalmicroservice;
+package br.com.animal.microservice.business;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
