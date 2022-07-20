@@ -1,2 +1,70 @@
-# animal-microservice
-Microserviço responsável por gerenciar os animais
+CREATE TABLE ANIMAL (
+	ID INT
+	NOME VARCHAR(100) NOT NULL,
+	IDADE INT  NOT NULL,
+	RACA VARCHAR  NOT NULL,
+	COR VARCHAR NOT NULL,
+	ESPECIE VARCHAR(50) NOT NULL,
+	SEXO CHAR NOT NULL,
+	PORTE VARCHAR(50) NOT NULL,
+	PELO VARCHAR(50) NULL,
+	SITUACAO VARCHAR(100) NOT NULL,
+	HISTORIA VARCHAR(1000) NOT NULL,
+	ADOTADO BOOL NOT NULL
+	APADRINHADO BOOL NOT NULL
+	OBSERVACAO VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE PESSOA(
+	ID INT,
+	NOME VARCHAR(100) NOT NULL,
+	IDADE INT  NOT NULL,
+	CPF VARCHAR(11) NOT NULL,
+	ENDERECO (500) NOT NULL,
+	TELEFONE VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE ADOCAO(
+	ID INT,
+	ID_ANIMAL INT,
+	ID_PESSOA INT,
+	DATA DATETIME NOT NULL,
+	OBSERVACAO VARCHAR(1000) NULL
+);
+
+CREATE TABLE APADRINHAR(
+	ID INT,
+	ID_ANIMAL INT,
+	ID_PESSOA INT,
+	VALOR FLOAT NOT NULL,
+	DATA_INICIO DATETIME NOT NULL,
+	DATA_FIM DATETIME NOT NULL,
+	OBSERVACAO VARCHAR(1000) NULL
+);
+
+
+REGRAS DE NEGOCIO:
+	1 - SE O ANIMAL QUE ESTIVER SENDO ADOTADO, VERIFICAR SE O MESMO ESTÁ SENDO APADRINHASO, SE SIM, ENCERRAR O APADRINHAMENTO. (DATA FIM APADRINHAMENTO NÃO PODE SER MAIOR QUE A DATA DE ADOÇÃO)
+	2 - POSSIBILITAR A PESSOA QUE ESTA APADRINHANDO, ENCERRAR A QUALQUER MOMENTO
+	3 - UM ANIMAL NÃO PODE SER ADOTADO MAIS DE UMA VEZ
+	
+
+ENDPOINT:
+	1 - listas todos animais (OPCAO DE FILTROS) - EXCETO OBSERVACAO, HISTORIA, NOME
+	2 - adotar animal - todos os campos da tabela adocao (post) (data não colocar no post, pegar do sistema)
+	2 - apadrinhamento animal - todos os campos da tabela Aapadrinhamento (post)
+	
+	
+NOME MICROSERVIÇO:
+	animal-microservice
+	
+Sexo:	Fêmea
+Idade:	12 anos e 3 meses
+Porte:	Médio
+Raça:	SRD
+Cor do Pelo:	PRETO COM CARAMELO
+Pelo:	Curto
+Temperamento:	Brincalhão, Agitado
+Situação:	Vacinado, Vermifugado, Castrado
+História:	Foi encontrada em Alphaville por um casal que não podia ficar com ela e a levaram para a chácara. Foi adotada e devolvida com sarna negra e mais tarde, com doença do carrapato.
+Observação:	Sarna negra.
