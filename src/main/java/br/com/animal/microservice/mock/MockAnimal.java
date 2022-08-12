@@ -1,30 +1,32 @@
 package br.com.animal.microservice.mock;
 
-import br.com.animal.microservice.controller.dto.AnimalDTO;
+import br.com.animal.microservice.repositories.AnimalRepository;
+import br.com.animal.microservice.repositories.model.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Component
 public class MockAnimal {
-    public static List<AnimalDTO> getAnimalDTOS() {
-        AnimalDTO animalDTO = new AnimalDTO();
-        animalDTO.setId(1);
-        animalDTO.setNome("Mel");
-        animalDTO.setIdade(1);
-        animalDTO.setRaca("Shih-Tzu");
-        animalDTO.setCor("Branco");
-        animalDTO.setPeso("5,8 kg");
-        animalDTO.setAltura("20 cm");
-        animalDTO.setSexo("Fêmea");
-        animalDTO.setPorte("Pequeno");
-        animalDTO.setPelo("Longo");
-        animalDTO.setSituacao("Disponivel para ser adotado (a)");
-        animalDTO.setHistoria("Essa raça originou-se do cruzamento do Lhasa Apso (Tibet) com o Pequinês (China) há muitos séculos.");
-        animalDTO.setAdotado(Boolean.FALSE);
-        animalDTO.setApadrinhado(Boolean.FALSE);
-        animalDTO.setObservacao("Brincalhão, Astuto, Extrovertido, Amigável, Vivaz");
-        List<AnimalDTO> animais = new ArrayList<>();
-        animais.add(animalDTO);
-        return animais;
+    @Autowired
+    private AnimalRepository animalRepository;
+
+    public void inserirAnimaisNaBaseDeDados(String linhaArquivo) {
+        String[] linha = linhaArquivo.split("\\|");
+        Animal animal = new Animal();
+        animal.setNome(linha[0]);
+        animal.setIdade(linha[1]);
+        animal.setRaca(linha[2]);
+        animal.setCor(linha[3]);
+        animal.setPeso(linha[4]);
+        animal.setAltura(linha[5]);
+        animal.setSexo(linha[6]);
+        animal.setPorte(linha[7]);
+        animal.setPelo(linha[8]);
+        animal.setSituacao(linha[9]);
+        animal.setHistoria(linha[10]);
+        animal.setAdotado(Boolean.parseBoolean(linha[11]));
+        animal.setApadrinhado(Boolean.parseBoolean(linha[12]));
+        animal.setObservacao(linha[13]);
+        this.animalRepository.save(animal);
     }
 }

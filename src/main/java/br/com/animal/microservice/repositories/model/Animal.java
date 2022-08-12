@@ -15,7 +15,7 @@ public class Animal {
     @Column
     private String nome;
     @Column
-    private int idade;
+    private String idade;
     @Column
     private String raca;
     @Column

@@ -35,4 +35,13 @@ public class AnimalBS {
             throw new RuntimeException(e.getCause());
         }
     }
+
+    public Iterable<Animal> buscarTodosOsAnimais() {
+        try {
+            return animalRepository.findAll();
+        } catch (Exception e) {
+            log.error("Ocorreu um erro ao tenta buscar a lista de animais na base de dados: ", e);
+            throw new RuntimeException(e.getCause());
+        }
+    }
 }

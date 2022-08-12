@@ -8,7 +8,7 @@ import lombok.Data;
 public class AnimalDTO {
     private int id;
     private String nome;
-    private int idade;
+    private String idade;
     private String raca;
     private String cor;
     private String peso;
