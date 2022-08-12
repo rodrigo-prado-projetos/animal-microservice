@@ -1,6 +1,7 @@
 package br.com.animal.microservice;
 
 import br.com.animal.microservice.mock.MockAnimal;
+import br.com.animal.microservice.mock.MockPessoa;
 import br.com.animal.microservice.util.ConstantsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.stream.Stream;
 public class AnimalMicroserviceApplication {
     @Autowired
     private MockAnimal mockAnimal;
+    @Autowired
+    private MockPessoa mockPessoa;
 
     public static void main(String[] args) {
         SpringApplication.run(AnimalMicroserviceApplication.class, args);
@@ -34,6 +37,19 @@ public class AnimalMicroserviceApplication {
             );
         } catch (Exception e) {
             log.error("Ocorreu um erro ao tentar popular a tabela de animais");
+        }
+    }
+
+    @Bean
+    public void inserirPessoasNaBaseDeDados() {
+        try {
+            Stream<String> lines = Files.lines(Paths.get("src/main/resources/pessoas.txt"));
+            lines.forEach((String linha) -> {
+                        this.mockPessoa.inserirPessoasNaBaseDeDados(linha);
+                    }
+            );
+        } catch (Exception e) {
+            log.error("Ocorreu um erro ao tentar popular a tabela de pessoas");
         }
     }
 }

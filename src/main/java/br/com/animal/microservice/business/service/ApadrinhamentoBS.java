@@ -18,6 +18,15 @@ public class ApadrinhamentoBS {
         this.apadrinhamentoRepository = apadrinhamentoRepository;
     }
 
+    public void apadrinhaUmAnimal(Apadrinhamento apadrinhamento) {
+        try {
+            this.apadrinhamentoRepository.save(apadrinhamento);
+        } catch (Exception e) {
+            log.error("Ocorreu um erro ao tenta salvar um apadrinhamento do animal(id) {} na tabela de apadrinhamento", apadrinhamento.getIdAnimal());
+            throw new RuntimeException(e.getCause());
+        }
+    }
+
     public List<Apadrinhamento> buscarApadrinhamentoPorIdDoAnimal(Long idAnimal) {
         try {
             return this.apadrinhamentoRepository.findByIdAnimal(idAnimal);

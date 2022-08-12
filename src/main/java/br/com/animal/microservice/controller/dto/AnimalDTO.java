@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AnimalDTO {
-    private int id;
+    private Long id;
     private String nome;
     private String idade;
     private String raca;

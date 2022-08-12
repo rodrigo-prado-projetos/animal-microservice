@@ -11,7 +11,11 @@ public class MockAnimal {
     private AnimalRepository animalRepository;
 
     public void inserirAnimaisNaBaseDeDados(String linhaArquivo) {
-        String[] linha = linhaArquivo.split("\\|");
+        Animal animal = obterObjetoAnimal(linhaArquivo.split("\\|"));
+        this.animalRepository.save(animal);
+    }
+
+    private Animal obterObjetoAnimal(String[] linha) {
         Animal animal = new Animal();
         animal.setNome(linha[0]);
         animal.setIdade(linha[1]);
@@ -27,6 +31,6 @@ public class MockAnimal {
         animal.setAdotado(Boolean.parseBoolean(linha[11]));
         animal.setApadrinhado(Boolean.parseBoolean(linha[12]));
         animal.setObservacao(linha[13]);
-        this.animalRepository.save(animal);
+        return animal;
     }
 }
