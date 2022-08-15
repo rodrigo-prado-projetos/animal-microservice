@@ -40,9 +40,12 @@ public class ApadrinhamentoBO {
 
         this.animalBO.validarSeAnimalFoiAdotado(animal.isAdotado());
 
+
+
+
         Apadrinhamento apadrinhamento = new Apadrinhamento();
         BeanUtils.copyProperties(apadrinhamentoVO, apadrinhamento);
-        this.apadrinhamentoBS.apadrinhaUmAnimal(apadrinhamento);
+        this.apadrinhamentoBS.apadrinharUmAnimal(apadrinhamento);
 
         this.animalBO.alterarStatusDoAnimalParaApadrinhado(animal);
     }

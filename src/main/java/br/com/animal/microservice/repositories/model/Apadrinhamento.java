@@ -14,9 +14,9 @@ public class Apadrinhamento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "ID_ANIMAL")
-    private String idAnimal;
+    private Long idAnimal;
     @Column(name = "ID_PESSOA")
-    private int idPessoa;
+    private Long idPessoa;
     @Column
     private BigDecimal valor;
     @Column(name = "DATA_INICIO")

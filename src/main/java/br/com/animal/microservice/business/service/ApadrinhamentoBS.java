@@ -18,7 +18,7 @@ public class ApadrinhamentoBS {
         this.apadrinhamentoRepository = apadrinhamentoRepository;
     }
 
-    public void apadrinhaUmAnimal(Apadrinhamento apadrinhamento) {
+    public void apadrinharUmAnimal(Apadrinhamento apadrinhamento) {
         try {
             this.apadrinhamentoRepository.save(apadrinhamento);
         } catch (Exception e) {
