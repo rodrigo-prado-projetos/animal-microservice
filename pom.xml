@@ -12,13 +12,13 @@
 
     <groupId>br.com.animal.microservice</groupId>
     <artifactId>animal-microservice</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>animal-microservice</name>
     <description>Projeto responsável pelo gerenciamento dos animais</description>
 
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
@@ -83,12 +83,14 @@
 
     <build>
         <plugins>
-           <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-        </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
     <repositories>
