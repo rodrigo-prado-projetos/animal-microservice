@@ -12,7 +12,7 @@
 
     <groupId>br.com.animal.microservice</groupId>
     <artifactId>animal-microservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>animal-microservice</name>
     <description>Projeto responsável pelo gerenciamento dos animais</description>
 
