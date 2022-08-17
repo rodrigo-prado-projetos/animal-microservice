@@ -4,6 +4,7 @@ import br.com.animal.microservice.repositories.AdocaoRepository;
 import br.com.animal.microservice.repositories.model.Adocao;
 import br.com.animal.microservice.repositories.model.Animal;
 import br.com.animal.microservice.repositories.model.Pessoa;
+import br.com.animal.microservice.util.ConstantsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,22 +22,22 @@ public class AdocaoBS {
     }
 
     public void salvarAdocaoDoAnimal(Animal animal, Pessoa pessoa) {
-        Adocao adocao = montarObjetoAdocao(Math.toIntExact(animal.getId()), pessoa);
+        Adocao adocao = montarObjetoDeAdocao(Math.toIntExact(animal.getId()), pessoa);
         try {
             this.adocaoRepository.save(adocao);
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao tentar criar adocao na base de dados: ", adocao);
+            log.error(ConstantsUtil.INSERIR_ERRO, adocao);
             throw new RuntimeException(e.getCause());
         }
 
     }
 
-    private Adocao montarObjetoAdocao(int idAnimal, Pessoa pessoa) {
+    private Adocao montarObjetoDeAdocao(int idAnimal, Pessoa pessoa) {
         Adocao adocao = new Adocao();
         adocao.setData(String.valueOf(LocalDateTime.now()));
         adocao.setIdAnimal(idAnimal);
         adocao.setIdPessoa(Math.toIntExact(pessoa.getId()));
-        adocao.setObservacao("Animal adotado pela pessoa de nome: ".concat(pessoa.getNome()));
+        adocao.setObservacao(ConstantsUtil.ANIMAL_ADOTADO_PESSOA.concat(pessoa.getNome()));
         return adocao;
     }
 }

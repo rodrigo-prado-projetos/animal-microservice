@@ -23,7 +23,7 @@ public class ManipuladorErro extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({AnimalAdotado.class})
-    public ResponseEntity<Object> pessoaNaoCadastradoNaBaseDeDados(AnimalAdotado animalAdotado) {
+    public ResponseEntity<Object> animalJaFoiAdotado(AnimalAdotado animalAdotado) {
         return ResponseEntity.ok(animalAdotado.getMessage());
     }
 

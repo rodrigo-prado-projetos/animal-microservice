@@ -6,7 +6,6 @@ import br.com.animal.microservice.convert.AnimalConvert;
 import br.com.animal.microservice.exception.AnimalAdotado;
 import br.com.animal.microservice.exception.AnimalNaoEncontrado;
 import br.com.animal.microservice.repositories.model.Animal;
-import br.com.animal.microservice.util.AnimalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +14,14 @@ import java.util.Optional;
 
 @Component
 public class AnimalBO {
+    private final AnimalBS animalBS;
+    private final AnimalConvert animalConvert;
+
     @Autowired
-    private AnimalBS animalBS;
-    @Autowired
-    private AnimalUtil animalUtil;
-    @Autowired
-    private AnimalConvert animalConvert;
+    public AnimalBO(AnimalBS animalBS, AnimalConvert animalConvert) {
+        this.animalBS = animalBS;
+        this.animalConvert = animalConvert;
+    }
 
     public Animal validarSeAnimalExisteNaBaseDeDados(Long idAnimal) {
         Optional<Animal> animal = this.animalBS.buscarAnimalPorId(idAnimal);

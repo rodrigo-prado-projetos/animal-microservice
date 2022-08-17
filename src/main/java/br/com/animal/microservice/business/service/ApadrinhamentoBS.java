@@ -2,6 +2,7 @@ package br.com.animal.microservice.business.service;
 
 import br.com.animal.microservice.repositories.ApadrinhamentoRepository;
 import br.com.animal.microservice.repositories.model.Apadrinhamento;
+import br.com.animal.microservice.util.ConstantsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class ApadrinhamentoBS {
         try {
             this.apadrinhamentoRepository.save(apadrinhamento);
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao tenta salvar um apadrinhamento do animal(id) {} na tabela de apadrinhamento", apadrinhamento.getIdAnimal());
+            log.error(ConstantsUtil.ERRO_SALVAR_REGISTRO_APADRINHAMENTO, apadrinhamento.getIdAnimal());
             throw new RuntimeException(e.getCause());
         }
     }
@@ -31,7 +32,7 @@ public class ApadrinhamentoBS {
         try {
             return this.apadrinhamentoRepository.findByIdAnimal(idAnimal);
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao tenta buscar animal {} na tabela de apadrinhamento", idAnimal);
+            log.error(ConstantsUtil.ERRO_BUSCAR_ANIMAL_TABELA_APADRINHAMENTO, idAnimal);
             throw new RuntimeException(e.getCause());
         }
     }
@@ -40,7 +41,7 @@ public class ApadrinhamentoBS {
         try {
             this.apadrinhamentoRepository.deleteById(idApadrinhamento);
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao encerrar o apadrinhamento {}", idApadrinhamento);
+            log.error(ConstantsUtil.ERRO_EXCLUIR_APADRINHAMENTO, idApadrinhamento);
             throw new RuntimeException(e.getCause());
         }
     }

@@ -18,10 +18,14 @@ import java.util.stream.Stream;
 @SpringBootApplication
 @ComponentScan(ConstantsUtil.BASE_PACKAGE)
 public class AnimalMicroserviceApplication {
+    private final MockAnimal mockAnimal;
+    private final MockPessoa mockPessoa;
+
     @Autowired
-    private MockAnimal mockAnimal;
-    @Autowired
-    private MockPessoa mockPessoa;
+    public AnimalMicroserviceApplication(MockAnimal mockAnimal, MockPessoa mockPessoa) {
+        this.mockAnimal = mockAnimal;
+        this.mockPessoa = mockPessoa;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(AnimalMicroserviceApplication.class, args);
@@ -36,7 +40,7 @@ public class AnimalMicroserviceApplication {
                     }
             );
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao tentar popular a tabela de animais");
+            log.error(ConstantsUtil.ERRO_SALVAR_ANIMAIS);
         }
     }
 
@@ -49,7 +53,7 @@ public class AnimalMicroserviceApplication {
                     }
             );
         } catch (Exception e) {
-            log.error("Ocorreu um erro ao tentar popular a tabela de pessoas");
+            log.error(ConstantsUtil.ERRO_SALVAR_PESSOA);
         }
     }
 }

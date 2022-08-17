@@ -6,7 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ApadrinhamentoRepository extends CrudRepository<Apadrinhamento, Long> {
-
     List<Apadrinhamento> findByIdAnimal(Long idAnimal);
-
 }

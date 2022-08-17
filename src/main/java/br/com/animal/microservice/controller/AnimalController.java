@@ -6,6 +6,7 @@ import br.com.animal.microservice.business.object.ApadrinhamentoBO;
 import br.com.animal.microservice.controller.dto.AnimalDTO;
 import br.com.animal.microservice.controller.vo.AnimalVO;
 import br.com.animal.microservice.controller.vo.ApadrinhamentoVO;
+import br.com.animal.microservice.util.ConstantsUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,28 +19,32 @@ import java.util.List;
 
 @RestController
 public class AnimalController {
+    private final AdocaoBO adocaoBO;
+    private final ApadrinhamentoBO apadrinhamentoBO;
+    private final AnimalBO animalBO;
+
     @Autowired
-    private AdocaoBO adocaoBO;
-    @Autowired
-    private ApadrinhamentoBO apadrinhamentoBO;
-    @Autowired
-    private AnimalBO animalBO;
+    public AnimalController(AdocaoBO adocaoBO, ApadrinhamentoBO apadrinhamentoBO, AnimalBO animalBO) {
+        this.adocaoBO = adocaoBO;
+        this.apadrinhamentoBO = apadrinhamentoBO;
+        this.animalBO = animalBO;
+    }
 
     @ApiOperation(value = "Retorna uma lista de animais")
-    @GetMapping(value = "/animais")
+    @GetMapping(value = ConstantsUtil.ANIMAIS)
     public ResponseEntity<List<AnimalDTO>> buscarTodosAnimais() {
         return ResponseEntity.ok(animalBO.buscarTodosOsAnimais());
     }
 
     @ApiOperation(value = "Adotar um animal")
-    @PostMapping(value = "/animais/adotar")
+    @PostMapping(value = ConstantsUtil.ADOTAR)
     public ResponseEntity<Object> adotarAnimal(@RequestBody AnimalVO animalVO) {
         this.adocaoBO.adotarAnimal(animalVO);
         return ResponseEntity.ok("Animal adotado com sucesso.");
     }
 
     @ApiOperation(value = "Apadrinhar um animal")
-    @PostMapping(value = "/animais/apadrinhar")
+    @PostMapping(value = ConstantsUtil.APADRINHAR)
     public ResponseEntity<Object> apadrinharAnimal(@RequestBody ApadrinhamentoVO apadrinhamentoVO) {
         this.apadrinhamentoBO.apadrinharAnimal(apadrinhamentoVO);
         return ResponseEntity.ok("Animal apadrinhado com sucesso.");
