@@ -10,10 +10,7 @@ import br.com.animal.microservice.util.ConstantsUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,12 +27,14 @@ public class AnimalController {
         this.animalBO = animalBO;
     }
 
+    @CrossOrigin
     @ApiOperation(value = "Retorna uma lista de animais")
     @GetMapping(value = ConstantsUtil.ANIMAIS)
     public ResponseEntity<List<AnimalDTO>> buscarTodosAnimais() {
         return ResponseEntity.ok(animalBO.buscarTodosOsAnimais());
     }
 
+    @CrossOrigin
     @ApiOperation(value = "Adotar um animal")
     @PostMapping(value = ConstantsUtil.ADOTAR)
     public ResponseEntity<Object> adotarAnimal(@RequestBody AnimalVO animalVO) {
@@ -43,6 +42,7 @@ public class AnimalController {
         return ResponseEntity.ok("Animal adotado com sucesso.");
     }
 
+    @CrossOrigin
     @ApiOperation(value = "Apadrinhar um animal")
     @PostMapping(value = ConstantsUtil.APADRINHAR)
     public ResponseEntity<Object> apadrinharAnimal(@RequestBody ApadrinhamentoVO apadrinhamentoVO) {
